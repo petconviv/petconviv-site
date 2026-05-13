@@ -3,44 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Petconviv | Pomodoro & Relaxamento Pet</title>
+    <title>Petconviv - Foco & Calma</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="main-wrapper">
-        <header>
-            <div class="logo">petconviv</div>
-            <p class="tagline">Foco para você, paz para seu pet.</p>
-        </header>
+    <div class="container">
+        <!-- Player de Vídeo (Playlist em Modo Aleatório) -->
+        <div class="video-background">
+            <iframe 
+                id="video-player"
+                src="https://www.youtube.com/embed?listType=playlist&list=PL9QDRZwlkSkCgkxDcG4MfqPMaHt6Uc3ds&autoplay=1&mute=1&loop=1&shuffle=1" 
+                frameborder="0" 
+                allow="autoplay; encrypted-media" 
+                allowfullscreen>
+            </iframe>
+        </div>
 
-        <main class="content">
-            <div class="video-section">
-                <div class="video-responsive">
-                    <iframe id="pet-video" src="https://www.youtube.com/embed/S0Q4gU9v_0U?autoplay=1&mute=1&loop=1&playlist=S0Q4gU9v_0U" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                </div>
+        <!-- Interface do Pomodoro -->
+        <div class="pomodoro-overlay">
+            <h1>Petconviv Focus</h1>
+            <div id="timer">25:00</div>
+            <div class="controls">
+                <button id="start">Iniciar</button>
+                <button id="pause">Pausar</button>
+                <button id="reset">Resetar</button>
             </div>
-
-            <div class="timer-section">
-                <div class="timer-card">
-                    <div class="timer-display" id="timer">25:00</div>
-                    <div class="controls">
-                        <button class="btn-primary" id="start-btn" onclick="startTimer()">Iniciar Foco</button>
-                        <button class="btn-secondary" onclick="pauseTimer()">Pausar</button>
-                        <button class="btn-reset" onclick="resetTimer()">Resetar</button>
-                    </div>
-                </div>
-
-                <div class="promo-card">
-                    <h3>Vai adotar um pet? 🐾</h3>
-                    <p>Evite erros comuns e garanta uma convivência tranquila.</p>
-                    <a href="#" class="btn-promo">Conhecer E-book</a>
-                </div>
-            </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2026 Petconviv - Todos os direitos reservados.</p>
-        </footer>
+            <p class="status">Trabalhe em paz enquanto seu pet relaxa.</p>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
