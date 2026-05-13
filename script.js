@@ -1,33 +1,49 @@
 let timer;
-let timeLeft = 25 * 60; // 25 minutos em segundos
+let tempoInicial = 25 * 60; // 25 minutos padrão
+let tempoRestante = tempoInicial;
+let rodando = false;
 
-function updateDisplay() {
-    let minutes = Math.floor(timeLeft / 60);
-    let seconds = timeLeft % 60;
-    document.getElementById('timer').textContent = 
-        `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+const display = document.getElementById('timer');
+const btnStart = document.getElementById('start');
+const btnPause = document.getElementById('pause');
+const btnReset = document.getElementById('reset');
+
+function atualizarDisplay() {
+    let minutos = Math.floor(tempoRestante / 60);
+    let segundos = tempoRestante % 60;
+    display.textContent = `${minutos < 10 ? '0' : ''}${minutos}:${segundos < 10 ? '0' : ''}${segundos}`;
 }
 
-function startTimer() {
-    if (timer) return;
+function iniciarTimer() {
+    if (rodando) return;
+    rodando = true;
     timer = setInterval(() => {
-        if (timeLeft > 0) {
-            timeLeft--;
-            updateDisplay();
+        if (tempoRestante > 0) {
+            tempoRestante--;
+            atualizarDisplay();
         } else {
             clearInterval(timer);
-            alert("Hora da pausa! Dê atenção ao seu Pet 🐾");
+            rodando = false;
+            alert("Bloco de foco concluído! Hora de um carinho no seu pet.");
         }
     }, 1000);
 }
 
-function pauseTimer() {
+function pausarTimer() {
     clearInterval(timer);
-    timer = null;
+    rodando = false;
 }
 
-function resetTimer() {
-    pauseTimer();
-    timeLeft = 25 * 60;
-    updateDisplay();
+function resetarTimer() {
+    clearInterval(timer);
+    rodando = false;
+    tempoRestante = tempoInicial;
+    atualizarDisplay();
 }
+
+btnStart.addEventListener('click', iniciarTimer);
+btnPause.addEventListener('click', pausarTimer);
+btnReset.addEventListener('click', resetarTimer);
+
+// Inicializa o visor
+atualizarDisplay();
