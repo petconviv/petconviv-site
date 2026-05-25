@@ -18,22 +18,13 @@ function atualizarDisplay() {
     display.textContent = `${minutos < 10 ? '0' : ''}${minutos}:${segundos < 10 ? '0' : ''}${segundos}`;
 }
 
-// Funções para controlar o vídeo do YouTube remotamente
-function darPlayNoVideo() {
-    if (iframe) {
-        iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-    }
-}
-
-function pausarNoVideo() {
-    if (iframe) {
-        iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-    }
-}
-
-function pararNoVideo() {
-    if (iframe) {
-        iframe.contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', '*');
+// Comandos diretos de controle de mídia para o Iframe
+function controlarVideo(acao) {
+    if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage(JSON.stringify({
+            event: "command",
+            func: acao
+        }), "*");
     }
 }
 
@@ -41,8 +32,8 @@ function iniciarTimer() {
     if (rodando) return;
     rodando = true;
 
-    // Dispara o vídeo do YouTube ao mesmo tempo que inicia o cronômetro
-    darPlayNoVideo();
+    // Dá play no vídeo automaticamente eliminando o duplo clique do usuário
+    controlarVideo("playVideo");
 
     timer = setInterval(() => {
         if (tempoRestante > 0) {
@@ -52,8 +43,8 @@ function iniciarTimer() {
             clearInterval(timer);
             rodando = false;
             
-            // Pausa o vídeo no fim dos 25 minutos
-            pausarNoVideo();
+            // Pausa o vídeo quando os 25 minutos chegam a zero
+            controlarVideo("pauseVideo");
             
             alert("Sessão terminada! Dê um pouco de atenção ao seu pet.");
         }
@@ -64,8 +55,8 @@ function pausarTimer() {
     clearInterval(timer);
     rodando = false;
     
-    // Pausa o vídeo se o usuário pausar o foco
-    pausarNoVideo();
+    // Pausa o vídeo se o usuário pausar o fluxo de trabalho
+    controlarVideo("pauseVideo");
 }
 
 function resetarTimer() {
@@ -74,13 +65,13 @@ function resetarTimer() {
     tempoRestante = tempoInicial;
     atualizarDisplay();
     
-    // Para o vídeo se o usuário resetar
-    pararNoVideo();
+    // Para e reseta o vídeo de fundo
+    controlarVideo("stopVideo");
 }
 
 btnStart.addEventListener('click', iniciarTimer);
 btnPause.addEventListener('click', pausarTimer);
 btnReset.addEventListener('click', resetarTimer);
 
-// Inicializar o visor
+// Inicializar a tela do contador
 atualizarDisplay();
