@@ -1,4 +1,4 @@
-* {
+=* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -42,7 +42,7 @@ h1 {
 .video-container {
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; /* Mantém a proporção 16:9 do YouTube */
+    padding-bottom: 56.25%; /* Proporção 16:9 */
     height: 0;
     overflow: hidden;
     border-radius: 12px;
@@ -50,7 +50,7 @@ h1 {
     margin-bottom: 24px;
 }
 
-.video-container iframe {
+.video-container iframe, #player {
     position: absolute;
     top: 0;
     left: 0;
