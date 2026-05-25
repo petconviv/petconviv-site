@@ -1,5 +1,5 @@
 let timer;
-let tempoInicial = 25 * 60; // Fixo em 25 minutos
+let tempoInicial = 25 * 60; 
 let tempoRestante = tempoInicial;
 let rodando = false;
 
@@ -24,7 +24,7 @@ function iniciarTimer() {
         } else {
             clearInterval(timer);
             rodando = false;
-            alert("Sessão finalizada! Aproveite para dar atenção ao seu pet.");
+            alert("Sessão terminada! Dê um pouco de atenção ao seu pet.");
         }
     }, 1000);
 }
@@ -45,5 +45,5 @@ btnStart.addEventListener('click', iniciarTimer);
 btnPause.addEventListener('click', pausarTimer);
 btnReset.addEventListener('click', resetarTimer);
 
-// Inicialização
+// Inicializar o visor
 atualizarDisplay();
