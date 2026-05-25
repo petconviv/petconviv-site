@@ -15,10 +15,10 @@ function onYouTubeIframeAPIReady() {
         width: '100%',
         videoId: 'WMzpO9i3nlc', // ID do seu vídeo de 48 min
         playerVars: {
-            'autoplay': 1,
-            'mute': 1,
+            'autoplay': 0, // Inicia pausado para esperar o clique do usuário
+            'mute': 1,     // Mantém mudo inicialmente para garantir que o navegador permita o play via código
             'loop': 1,
-            'playlist': 'WMzpO9i3nlc', // Necessário para fazer o loop de vídeo único
+            'playlist': 'WMzpO9i3nlc',
             'controls': 1,
             'rel': 0,
             'showinfo': 0
@@ -30,7 +30,7 @@ function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady(event) {
-    event.target.playVideo();
+    // Player pronto e aguardando os comandos dos botões do Pomodoro
 }
 
 // ==========================================
@@ -55,6 +55,12 @@ function atualizarDisplay() {
 function iniciarTimer() {
     if (rodando) return;
     rodando = true;
+
+    // Dá o PLAY no vídeo automaticamente ao começar o foco
+    if (player && typeof player.playVideo === 'function') {
+        player.playVideo();
+    }
+
     timer = setInterval(() => {
         if (tempoRestante > 0) {
             tempoRestante--;
@@ -62,6 +68,12 @@ function iniciarTimer() {
         } else {
             clearInterval(timer);
             rodando = false;
+            
+            // Pausa o vídeo quando o tempo acaba
+            if (player && typeof player.pauseVideo === 'function') {
+                player.pauseVideo();
+            }
+            
             alert("Sessão terminada! Dê um pouco de atenção ao seu pet.");
         }
     }, 1000);
@@ -70,6 +82,11 @@ function iniciarTimer() {
 function pausarTimer() {
     clearInterval(timer);
     rodando = false;
+
+    // Pausa o vídeo automaticamente se o usuário pausar o Pomodoro
+    if (player && typeof player.pauseVideo === 'function') {
+        player.pauseVideo();
+    }
 }
 
 function resetarTimer() {
@@ -77,6 +94,11 @@ function resetarTimer() {
     rodando = false;
     tempoRestante = tempoInicial;
     atualizarDisplay();
+
+    // Pausa e reinicia o vídeo se o usuário resetar o cronômetro
+    if (player && typeof player.stopVideo === 'function') {
+        player.stopVideo();
+    }
 }
 
 btnStart.addEventListener('click', iniciarTimer);
