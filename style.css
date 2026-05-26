@@ -1,4 +1,4 @@
-/* CONFIGURAÇÕES GERAIS E LIMPEZA */
+/* CONFIGURAÇÕES GERAIS */
 * {
     margin: 0;
     padding: 0;
@@ -17,71 +17,59 @@ h1, h2, h3 {
     color: #043be8;
 }
 
-/* TOPO DO SITE (AZUL PETCONVIV PREMIUM) */
+/* TOPO DO SITE (AZUL PETCONVIV) */
 .topo-secao {
     background-color: #043be8;
     color: #ffffff;
-    padding: 60px 20px 80px 20px;
+    padding: 40px 40px 60px 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
 }
 
 .header-logo {
     width: 100%;
-    max-width: 1100px;
+    max-width: 1200px;
     display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
+    justify-content: flex-start; /* Alinha o logo à esquerda como nos apps modernos */
+    margin-bottom: 40px;
 }
 
 .header-logo .logo {
-    height: 50px;
+    height: 45px;
     width: auto;
     object-fit: contain;
 }
 
-/* Ajuste fino no título principal para não quebrar feio */
-.hero-conteudo h1 {
-    color: #ffffff;
-    font-size: 2.8rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    letter-spacing: -1px;
-}
-
-.hero-conteudo p {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1.25rem;
-    max-width: 600px;
-    margin: 0 auto 40px auto;
-    font-weight: 300;
-}
-
-/* CONTAINER DO PLAYER (A CAIXA CENTRAL) */
-.player-container {
-    background: rgba(255, 255, 255, 0.08);
+/* NOVO CONTAINER GIGANTE LADO A LADO */
+.player-container-lado-a-lado {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr; /* Vídeo maior na esquerda, controles na direita */
+    gap: 40px;
+    width: 100%;
+    max-width: 1200px;
+    background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 24px;
-    padding: 30px;
-    width: 100%;
-    max-width: 650px;
-    margin: 0 auto;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    padding: 40px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(8px);
+    align-items: center;
 }
 
-/* AJUSTE DO VÍDEO DO YOUTUBE */
+/* LADO DO VÍDEO (ESQUERDA) */
+.lado-video {
+    width: 100%;
+}
+
 .video-container {
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; /* Mantém a proporção do vídeo de cinema */
+    padding-bottom: 56.25%; /* Proporção de cinema */
     height: 0;
-    border-radius: 14px;
+    border-radius: 16px;
     overflow: hidden;
-    margin-bottom: 25px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
 }
 
 .video-container iframe {
@@ -93,43 +81,73 @@ h1, h2, h3 {
     border: none;
 }
 
-/* O CRONÔMETRO GRANDE */
+/* LADO DOS CONTROLES (DIREITA) */
+.lado-controles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.textos-player {
+    margin-bottom: 25px;
+}
+
+.textos-player h1 {
+    color: #ffffff;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+    text-align: center;
+}
+
+.textos-player p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.05rem;
+    font-weight: 300;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* O CRONÔMETRO REDESENHADO */
 #timer {
     font-size: 5.5rem;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     font-family: 'Poppins', sans-serif;
     color: #ffffff;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
+    line-height: 1;
 }
 
-/* REESTRUTURAÇÃO DOS BOTÕES (ESTILO MODERNO APP) */
+/* BOTÕES ALINHADOS EM LINHA */
 .controls {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 12px;
     width: 100%;
-    max-width: 450px;
-    margin: 0 auto;
+    max-width: 380px;
 }
 
 .controls button {
     flex: 1;
     border: none;
-    padding: 14px 20px;
-    font-size: 1rem;
+    padding: 14px 15px;
+    font-size: 0.95rem;
     font-weight: 600;
     font-family: 'Poppins', sans-serif;
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-/* Botão Iniciar (Destaque Branco) */
 #start {
     background-color: #ffffff;
     color: #043be8;
+    box-shadow: 0 4px 12px rgba(255,255,255,0.2);
 }
 
 #start:hover {
@@ -137,11 +155,10 @@ h1, h2, h3 {
     transform: translateY(-2px);
 }
 
-/* Botões Pausar e Resetar (Suaves e Transparentes) */
 #pause, #reset {
     background-color: rgba(255, 255, 255, 0.15);
     color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 #pause:hover, #reset:hover {
@@ -151,102 +168,96 @@ h1, h2, h3 {
 
 /* SEÇÃO DE CONTEÚDO (FUNDO BRANCO) */
 .conteudo-secao {
-    padding: 90px 20px;
+    padding: 80px 20px;
     background-color: #ffffff;
 }
 
 .container-central {
     width: 100%;
-    max-width: 850px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
 .bloco-texto {
-    text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
 }
 
 .bloco-texto h2 {
     font-size: 2.2rem;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     font-weight: 700;
-    letter-spacing: -0.5px;
+    text-align: center;
 }
 
 .bloco-texto p {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     line-height: 1.7;
     margin-bottom: 20px;
     color: #475569;
-    text-align: left;
 }
 
-/* DOS DOIS LADOS - QUANDO ROLA A PÁGINA */
 .bloco-ciclos {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
-    margin-bottom: 80px;
+    margin-bottom: 70px;
 }
 
 .card-passo {
     background-color: #f8fafc;
-    padding: 35px;
+    padding: 30px;
     border-radius: 16px;
-    border-top: 5px solid #043be8;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    border-top: 4px solid #043be8;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
 }
 
 .card-passo h3 {
-    font-size: 1.3rem;
-    margin-bottom: 15px;
-    font-weight: 600;
+    font-size: 1.25rem;
+    margin-bottom: 12px;
 }
 
 .card-passo p {
-    font-size: 1.05rem;
+    font-size: 1rem;
     line-height: 1.6;
     color: #475569;
 }
 
-/* SEÇÃO DO E-BOOK CUSTOMIZADA */
+/* SEÇÃO DO E-BOOK */
 .secao-ebook {
     display: grid;
     grid-template-columns: 1fr 1.8fr;
     gap: 40px;
     align-items: center;
     background-color: #f8fafc;
-    padding: 45px;
-    border-radius: 24px;
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+    padding: 40px;
+    border-radius: 20px;
 }
 
 .ebook-imagem img {
     width: 100%;
     height: auto;
-    border-radius: 12px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
 .ebook-texto h3 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     margin-bottom: 15px;
-    font-weight: 700;
 }
 
 .ebook-texto p {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     line-height: 1.6;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     color: #475569;
 }
 
 .ebook-texto .titulo-ebook {
     font-weight: 600;
     color: #043be8;
-    background: rgba(4, 59, 232, 0.05);
-    padding: 15px;
-    border-radius: 10px;
+    background: rgba(4, 59, 232, 0.04);
+    padding: 12px;
+    border-radius: 8px;
     border-left: 3px solid #043be8;
 }
 
@@ -254,7 +265,7 @@ h1, h2, h3 {
     font-weight: 400;
     font-size: 0.95rem;
     display: block;
-    margin-top: 5px;
+    margin-top: 4px;
     color: #64748b;
 }
 
@@ -263,12 +274,11 @@ h1, h2, h3 {
     background-color: #043be8;
     color: #ffffff;
     text-decoration: none;
-    padding: 14px 35px;
+    padding: 12px 30px;
     border-radius: 50px;
     font-weight: 600;
     font-family: 'Poppins', sans-serif;
     transition: all 0.2s;
-    box-shadow: 0 4px 10px rgba(4, 59, 232, 0.3);
 }
 
 .btn-ebook:hover {
@@ -276,30 +286,32 @@ h1, h2, h3 {
     transform: translateY(-2px);
 }
 
-/* RODAPÉ DO SITE */
 .rodape {
     text-align: center;
-    padding: 50px 20px;
+    padding: 40px 20px;
     background-color: #f1f5f9;
     color: #64748b;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
-/* TORNANDO TUDO LINDO NO CELULAR */
-@media (max-width: 768px) {
-    .hero-conteudo h1 {
-        font-size: 2rem;
+/* RESPONSIVO PARA CELULAR (Eles voltam a ficar um embaixo do outro na tela pequena) */
+@media (max-width: 992px) {
+    .player-container-lado-a-lado {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 25px;
+    }
+    .topo-secao {
+        padding: 30px 15px;
+    }
+    .header-logo {
+        justify-content: center;
     }
     .bloco-ciclos, .secao-ebook {
         grid-template-columns: 1fr;
     }
-    .controls {
-        flex-direction: column;
-        gap: 10px;
-    }
     .secao-ebook {
         text-align: center;
-        padding: 30px;
     }
     .ebook-imagem {
         max-width: 180px;
