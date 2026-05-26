@@ -32,8 +32,9 @@ function iniciarTimer() {
     if (rodando) return;
     rodando = true;
 
-    // Dá play no vídeo automaticamente eliminando o duplo clique do usuário
+    // Dá play no vídeo e ativa o som (unMute) automaticamente
     controlarVideo("playVideo");
+    controlarVideo("unMute");
 
     timer = setInterval(() => {
         if (tempoRestante > 0) {
