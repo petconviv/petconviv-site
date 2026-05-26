@@ -31,7 +31,7 @@ h1, h2, h3 {
     width: 100%;
     max-width: 1200px;
     display: flex;
-    justify-content: flex-start; /* Alinha o logo à esquerda como nos apps modernos */
+    justify-content: center; /* Logotipo perfeitamente centralizado */
     margin-bottom: 40px;
 }
 
