@@ -76,3 +76,50 @@ btnReset.addEventListener('click', resetarTimer);
 
 // Inicializar a tela do contador
 atualizarDisplay();
+
+
+// ==========================================
+// FUNÇÃO INTELIGENTE DE SALVAR NOS FAVORITOS
+// ==========================================
+const btnFavoritos = document.getElementById('btn-favoritos');
+const alertaFavoritos = document.getElementById('alerta-favoritos');
+
+btnFavoritos.addEventListener('click', (e) => {
+    const url = window.location.href;
+    const titulo = document.title;
+    
+    // Detecta o sistema operacional do usuário
+    const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    let mensagem = "";
+
+    if (isMobile) {
+        mensagem = "Toque nos 3 pontinhos (ou compartilhar) e selecione 'Adicionar aos favoritos' ou 'Tela inicial'.";
+    } else if (isMac) {
+        mensagem = "Pressione ⌘ + D no teclado para salvar nos favoritos.";
+    } else {
+        mensagem = "Pressione Ctrl + D no teclado para salvar nos favoritos.";
+    }
+
+    // Tenta invocar a janela nativa do navegador para salvar (padrão legados)
+    try {
+        if (window.sidebar && window.sidebar.addPanel) { 
+            window.sidebar.addPanel(titulo, url, "");
+        } else if (window.external && ('AddFavorite' in window.external)) { 
+            window.external.AddFavorite(url, titulo);
+        } else {
+            throw new Error();
+        }
+        alertaFavoritos.textContent = "Adicionado com sucesso!";
+    } catch (err) {
+        // Se o navegador bloquear o script (comum hoje em dia), exibe a mensagem de atalho correta
+        alertaFavoritos.textContent = message = mensagem;
+    }
+
+    // Mostra o alerta com transição suave e esconde após 6 segundos
+    alertaFavoritos.style.opacity = "1";
+    setTimeout(() => {
+        alertaFavoritos.style.opacity = "0";
+    }, 6000);
+});
