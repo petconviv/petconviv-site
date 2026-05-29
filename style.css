@@ -244,10 +244,9 @@ h1, h2, h3 {
     box-shadow: 0 4px 6px rgba(0,0,0,0.02);
 }
 
-/* NOVO: Estilo para ocupar a linha inteira de forma harmoniosa */
 .card-explicativo-pomodoro {
-    grid-column: 1 / -1; /* Ocupa as duas colunas no desktop */
-    background-color: #f0f4ff; /* Azul bem suave de fundo para destacar */
+    grid-column: 1 / -1;
+    background-color: #f0f4ff;
     padding: 35px;
     border-radius: 16px;
     border-left: 4px solid #043be8;
@@ -267,7 +266,7 @@ h1, h2, h3 {
 }
 
 .card-explicativo-pomodoro p:last-child {
-    margin-bottom: 0; /* Tira a margem do último parágrafo */
+    margin-bottom: 0;
 }
 
 /* SEÇÃO DO E-BOOK */
@@ -359,7 +358,7 @@ h1, h2, h3 {
         grid-template-columns: 1fr;
     }
     .card-explicativo-pomodoro {
-        grid-column: auto; /* No celular ele volta a se comportar como bloco normal */
+        grid-column: auto;
     }
     .secao-ebook {
         text-align: center;
