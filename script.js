@@ -12,6 +12,16 @@ const btnPause = document.getElementById('pause');
 const btnReset = document.getElementById('reset');
 const iframe = document.getElementById('video-player');
 
+// Função para iniciar a playlist em uma posição de vídeo aleatória (ex: entre os 5 primeiros vídeos)
+function inicializarPlaylistAleatoria() {
+    if (iframe) {
+        // Escolhe um número aleatório de 0 a 4 para alternar a música inicial da playlist
+        const indiceAleatorio = Math.floor(Math.random() * 5);
+        const srcAtual = iframe.src;
+        iframe.src = srcAtual + "&index=" + indiceAleatorio;
+    }
+}
+
 function atualizarDisplay() {
     let minutos = Math.floor(tempoRestante / 60);
     let segundos = tempoRestante % 60;
@@ -74,8 +84,9 @@ btnStart.addEventListener('click', iniciarTimer);
 btnPause.addEventListener('click', pausarTimer);
 btnReset.addEventListener('click', resetarTimer);
 
-// Inicializar a tela do contador
+// Inicializar a tela do contador e aplicar aleatoriedade à playlist
 atualizarDisplay();
+window.addEventListener('DOMContentLoaded', inicializarPlaylistAleatoria);
 
 
 // ==========================================
@@ -95,7 +106,7 @@ btnFavoritos.addEventListener('click', (e) => {
     let mensagem = "";
 
     if (isMobile) {
-        mensagem = "Toque nos 3 pontinhos (or compartilhar) e selecione 'Adicionar aos favoritos' ou 'Tela inicial'.";
+        mensagem = "Toque nos 3 pontinhos (ou compartilhar) e selecione 'Adicionar aos favoritos' ou 'Tela inicial'.";
     } else if (isMac) {
         mensagem = "Pressione ⌘ + D no teclado para salvar nos favoritos.";
     } else {
