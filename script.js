@@ -95,7 +95,7 @@ btnFavoritos.addEventListener('click', (e) => {
     let mensagem = "";
 
     if (isMobile) {
-        mensagem = "Toque nos 3 pontinhos (ou compartilhar) e selecione 'Adicionar aos favoritos' ou 'Tela inicial'.";
+        mensagem = "Toque nos 3 pontinhos (or compartilhar) e selecione 'Adicionar aos favoritos' ou 'Tela inicial'.";
     } else if (isMac) {
         mensagem = "Pressione ⌘ + D no teclado para salvar nos favoritos.";
     } else {
@@ -114,7 +114,7 @@ btnFavoritos.addEventListener('click', (e) => {
         alertaFavoritos.textContent = "Adicionado com sucesso!";
     } catch (err) {
         // Se o navegador bloquear o script (comum hoje em dia), exibe a mensagem de atalho correta
-        alertaFavoritos.textContent = message = mensagem;
+        alertaFavoritos.textContent = mensagem;
     }
 
     // Mostra o alerta com transição suave e esconde após 6 segundos
